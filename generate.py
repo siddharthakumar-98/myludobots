@@ -6,5 +6,8 @@ height = 1
 x = 0
 y = 0
 z = height/2.0
-pyrosim.Send_Cube(name="Box", pos=[x,y,z] , size=[length,width,height])
+mod = 1
+for i in range(0,9):	
+	pyrosim.Send_Cube(name="Box", pos=[x,y,z+i] , size=[length*mod,width*mod,height*mod])
+	mod = mod * 0.9
 pyrosim.End()
