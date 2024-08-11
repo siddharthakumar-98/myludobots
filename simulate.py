@@ -3,6 +3,9 @@ import time
 import pybullet_data
 import pyrosim.pyrosim as pyrosim
 import numpy as np
+import math
+import time
+import random
 
 physicsClient = p.connect(p.GUI)
 p.setAdditionalSearchPath(pybullet_data.getDataPath())
@@ -15,14 +18,25 @@ backLegSensorValues = np.zeros(500)
 frontLegSensorValues = np.zeros(500)
 for i in range(0,500):
 	p.stepSimulation()
+	
 	backLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("BackLeg")
 	frontLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("FrontLeg")
+	
 	pyrosim.Set_Motor_For_Joint(
 	bodyIndex = robotId,
 	jointName = b'Torso_BackLeg',
 	controlMode = p.POSITION_CONTROL,
-	targetPosition = 0.0,
+	targetPosition = random.random(),
 	maxForce = 500)
+	
+	
+	pyrosim.Set_Motor_For_Joint(
+	bodyIndex = robotId,
+	jointName = b'Torso_FrontLeg',
+	controlMode = p.POSITION_CONTROL,
+	targetPosition = random.random(),
+	maxForce = 500)
+	
 	time.sleep(1/60.0)
 print(backLegSensorValues)
 np.save("data/backLegSensorValues.npy",backLegSensorValues)
