@@ -5,6 +5,7 @@ import pyrosim.pyrosim as pyrosim
 import numpy as np
 import math
 import random
+import constants as c
 
 physicsClient = p.connect(p.GUI)
 p.setAdditionalSearchPath(pybullet_data.getDataPath())
@@ -14,30 +15,18 @@ robotId = p.loadURDF("body.urdf")
 p.loadSDF("world.sdf")
 pyrosim.Prepare_To_Simulate(robotId)
 
-amplitudeFrontLeg = math.pi / 4
-frequencyFrontLeg = 10
-phaseOffsetFrontLeg = 0
+backLegSensorValues = np.zeros(c.num_steps)
+frontLegSensorValues = np.zeros(c.num_steps)
+targetBackLegAngles = np.zeros(c.num_steps)
+targetFrontLegAngles = np.zeros(c.num_steps)
 
-amplitudeBackLeg = math.pi / 4
-frequencyBackLeg = 10
-phaseOffsetBackLeg = math.pi / 4        
-
-num_steps = 1000  
-backLegSensorValues = np.zeros(num_steps)
-frontLegSensorValues = np.zeros(num_steps)
-targetBackLegAngles = np.zeros(num_steps)
-targetFrontLegAngles = np.zeros(num_steps)
-
-targetMin = -math.pi / 4.0
-targetMax = math.pi / 4.0
-
-targetFrontLegAngles = amplitudeFrontLeg * np.sin(frequencyFrontLeg * np.linspace(0, 2 * math.pi, num=num_steps, endpoint=True) + phaseOffsetFrontLeg)
-targetBackLegAngles = amplitudeBackLeg * np.sin(frequencyBackLeg * np.linspace(0, 2 * math.pi, num=num_steps, endpoint=True) + phaseOffsetBackLeg)
+targetFrontLegAngles = c.amplitudeFrontLeg * np.sin(c.frequencyFrontLeg * np.linspace(0, 2 * math.pi, num=c.num_steps, endpoint=True) + c.phaseOffsetFrontLeg)
+targetBackLegAngles = c.amplitudeBackLeg * np.sin(c.frequencyBackLeg * np.linspace(0, 2 * math.pi, num=c.num_steps, endpoint=True) + c.phaseOffsetBackLeg)
 #np.save("data/targetAngles.npy",targetAngles)
 np.save("data/targetFrontLegAngles.npy", targetFrontLegAngles)
 np.save("data/targetBackLegAngles.npy", targetBackLegAngles)
 
-for i in range(num_steps):
+for i in range(c.num_steps):
     p.stepSimulation()
     
     backLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("BackLeg")
