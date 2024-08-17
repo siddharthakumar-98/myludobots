@@ -1,3 +1,4 @@
+'''
 import pybullet as p
 import time
 import pybullet_data
@@ -46,9 +47,13 @@ for i in range(c.num_steps):
         targetPosition=targetFrontLegAngles[i],
         maxForce=250)
     
-    time.sleep(1/500.0)
+    time.sleep(c.timeSleep)
 
 print(backLegSensorValues)
 np.save("data/backLegSensorValues.npy", backLegSensorValues)
 np.save("data/frontLegSensorValues.npy", frontLegSensorValues)
 p.disconnect()
+'''
+from simulation import SIMULATION
+
+simulation = SIMULATION()

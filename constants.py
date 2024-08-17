@@ -12,3 +12,5 @@ phaseOffsetBackLeg = math.pi / 4
 
 targetMin = -math.pi / 4.0
 targetMax = math.pi / 4.0
+
+timeSleep = 1/500.0
