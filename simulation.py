@@ -32,5 +32,4 @@ class SIMULATION:
 			time.sleep(c.timeSleep)
 
 	def __del__(self):
-		self.robot.Save_Values()
 		p.disconnect()
