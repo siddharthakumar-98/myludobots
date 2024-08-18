@@ -12,7 +12,7 @@ def Create_World():
 	pyrosim.Send_Cube(name="Box", pos=[x,y,z] , size=[length,width,height])
 	pyrosim.End()
 
-def Create_Robot():
+def Generate_Body():
 	pyrosim.Start_URDF("body.urdf")
 	length = 1
 	width = 1
@@ -24,5 +24,12 @@ def Create_Robot():
 	pyrosim.Send_Joint( name = "Torso_FrontLeg" , parent= "Torso" , child = "FrontLeg" , type = "revolute", position = [2,0,1])
 	pyrosim.End()
 	
+def Generate_Brain():
+	pyrosim.Start_NeuralNetwork("brain.nndf")
+	pyrosim.Send_Sensor_Neuron(name = 0 , linkName = "Torso")
+	pyrosim.End()
+	
+	
 Create_World()
-Create_Robot()
+Generate_Body()
+Generate_Brain()
