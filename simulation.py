@@ -5,6 +5,7 @@ import pybullet as p
 import time
 from world import WORLD
 from robot import ROBOT
+import constants as c
 
 class SIMULATION:
 
@@ -19,3 +20,16 @@ class SIMULATION:
 		self.robot = ROBOT()
 		
 		pyrosim.Prepare_To_Simulate(self.robot.robotId)
+		self.robot.Prepare_To_Sense()
+		self.robot.Prepare_To_Act()
+		
+	def Run(self):
+		for i in range(c.num_steps):
+			p.stepSimulation()
+			self.robot.Sense(i)
+			self.robot.Act(i)
+			time.sleep(c.timeSleep)
+
+	def __del__(self):
+		self.robot.Save_Values()
+		p.disconnect()

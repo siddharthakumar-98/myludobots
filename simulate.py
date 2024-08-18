@@ -8,14 +8,6 @@ import math
 import random
 import constants as c
 
-physicsClient = p.connect(p.GUI)
-p.setAdditionalSearchPath(pybullet_data.getDataPath())
-p.setGravity(0, 0, -9.8)
-planeId = p.loadURDF("plane.urdf")
-robotId = p.loadURDF("body.urdf")
-p.loadSDF("world.sdf")
-pyrosim.Prepare_To_Simulate(robotId)
-
 backLegSensorValues = np.zeros(c.num_steps)
 frontLegSensorValues = np.zeros(c.num_steps)
 targetBackLegAngles = np.zeros(c.num_steps)
@@ -56,4 +48,5 @@ p.disconnect()
 '''
 from simulation import SIMULATION
 
-simulation = SIMULATION()
+simulate = SIMULATION()
+simulate.Run()
