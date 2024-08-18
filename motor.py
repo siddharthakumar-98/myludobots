@@ -18,7 +18,6 @@ class MOTOR:
 		self.targetMax = c.targetMax
 
 		if self.jointName == 'Torso_BackLeg':
-			print('yes')
 			self.frequency /= 2.0
 		
 		self.motorValues = self.amplitude * np.sin(self.frequency * np.linspace(self.targetMin, self.targetMax, num=c.num_steps, endpoint=True) + self.offset)
