@@ -1,5 +1,6 @@
 import math
 num_steps = 2000
+numberOfGenerations = 2
 
 amplitude = math.pi/4
 frequency = 10
