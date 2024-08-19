@@ -42,6 +42,10 @@ class ROBOT:
 		for jointName, motor in self.motors.items():
 			motor.Set_Value(t, self.robotId)
 	'''
+	
+	def Get_Fitness(self):
+		stateOfLinkZero = p.getLinkState(self.robotId,0)
+		positionOfLinkZero = stateOfLinkZero[0]
 			
 	def Save_Values(self):
 		for sensor in self.sensors.values():

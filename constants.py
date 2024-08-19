@@ -1,9 +1,5 @@
 import math
-import numpy as np
-
 num_steps = 2000
-
-x = np.linspace(0, 2*np.pi, num=num_steps)
 
 amplitude = math.pi/4
 frequency = 10
@@ -22,4 +18,4 @@ targetMax = math.pi / 4.0
 
 maxForce = 250
 
-timeSleep = 1/100.0
+timeSleep = 1/60.0
