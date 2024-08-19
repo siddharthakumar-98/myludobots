@@ -11,6 +11,7 @@ def Create_World():
 	y = 3
 	z = height/2.0	
 	pyrosim.Send_Cube(name="Box", pos=[x,y,z] , size=[length,width,height])
+	pyrosim.Send_Cube(name="default", pos=[x+1,y+1,z+1] , size=[length,width,height])
 	pyrosim.End()
 
 def Generate_Body():

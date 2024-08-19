@@ -47,6 +47,10 @@ np.save("data/frontLegSensorValues.npy", frontLegSensorValues)
 p.disconnect()
 '''
 from simulation import SIMULATION
+import sys
 
-simulate = SIMULATION()
+directOrGUI = sys.argv[1]
+
+simulate = SIMULATION(directOrGUI)
 simulate.Run()
+simulate.Get_Fitness()

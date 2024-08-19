@@ -7,8 +7,11 @@ class SOLUTION:
 	def __init__(self):
 		self.weights = np.random.rand(3,2)*2 - 1
     	
-	def Evaluate(self):
-		os.system("python3 simulate.py")
+	def Evaluate(self, directOrGUI):
+		self.Create_World()
+		self.Create_Body()
+		self.Create_Brain()
+		os.system("python3 simulate.py " + directOrGUI)
 		fit = open('data/fitness.txt', 'r')
 		fitness = fit.read()
 		self.fitness = float(fitness)

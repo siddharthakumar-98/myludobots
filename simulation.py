@@ -9,19 +9,18 @@ import constants as c
 
 class SIMULATION:
 
-	def __init__(self):
+	def __init__(self,directOrGUI):
 		
-		self.physicsClient = p.connect(p.GUI)
+		if(directOrGUI == 'DIRECT'):
+			self.physicsClient = p.connect(p.DIRECT)
+		elif(directOrGUI == 'GUI'):
+			self.physicsClient = p.connect(p.GUI)
 		p.setAdditionalSearchPath(pybullet_data.getDataPath())
 		p.configureDebugVisualizer(p.COV_ENABLE_GUI, 0)
 		p.setGravity(0, 0, -9.8)
 		
 		self.world = WORLD()
 		self.robot = ROBOT()
-		
-		pyrosim.Prepare_To_Simulate(self.robot.robotId)
-		self.robot.Prepare_To_Sense()
-		self.robot.Prepare_To_Act()
 		
 	def Run(self):
 		for i in range(c.num_steps):

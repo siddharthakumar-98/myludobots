@@ -1,6 +1,6 @@
 import math
-num_steps = 2000
-numberOfGenerations = 2
+num_steps = 1000
+numberOfGenerations = 10
 
 amplitude = math.pi/4
 frequency = 10
@@ -19,4 +19,4 @@ targetMax = math.pi / 4.0
 
 maxForce = 250
 
-timeSleep = 1/60.0
+timeSleep = 1/200.0
